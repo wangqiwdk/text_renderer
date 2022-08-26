@@ -93,15 +93,15 @@ class Corpus:
                 f"{self.__class__.__name__} {font_path} not support chars: {intersect}"
             )
             logger.debug(err_msg)
-            font, font_path = self.get_safe_font(text)
+            font, font_path = self.choice_safe_font(text)
             if not font:
                 raise RetryError(err_msg)
             else:
-                logger.debug(f"get a safe font:{self.__class__.__name__} {font_path}")
+                logger.debug(f"safe font:{self.__class__.__name__} {font_path}")
 
         return FontText(font, text, font_path, self.cfg.horizontal)
     
-    def get_safe_font(self, text):
+    def choice_safe_font(self, text):
         """
         随机选择一个字体返回，如果当前文本中存在字体不支持的字符，则重选字体。如果所有字体都不支持，则返回错误信息。
 
