@@ -95,6 +95,7 @@ class Corpus:
             logger.debug(err_msg)
             font, font_path = self.choice_safe_font(text)
             if not font:
+                logger.debug(f"font not found:{text}")
                 raise RetryError(err_msg)
             else:
                 logger.debug(f"safe font:{self.__class__.__name__} {font_path}")
